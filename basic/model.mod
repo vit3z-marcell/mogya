@@ -13,11 +13,11 @@ var egySorHossza{Rows} >= 0;
 
 # Kikotesek
 s.t. egyTermekcsakEgySorban{p in ProductGroups}:
-	sum{r in Rows} productInRow[r,p]=1;
+	sum{r in Rows} termekekEgySorban[r,p]=1;
 
 
 s.t. sorokhosszanakszamitasa{r in Rows}:
-	lengthOfRow[r] = sum{p in ProductGroups} termekekEgySorban[r,p]*space[p] + sum{c in Cashiers} kasszakSzamaEgySorban[r,c]*cashierLength;
+	egySorHossza[r] = sum{p in ProductGroups} termekekEgySorban[r,p]*space[p] + sum{c in Cashiers} kasszakSzamaEgySorban[r,c]*cashierLength;
 
 s.t. mindenKasszanakLegyenHelye{c in Cashiers}:
 	sum{r in Rows} kasszakSzamaEgySorban[r,c]=1;
@@ -34,5 +34,3 @@ minimize azAruhazMerete: aBoltHossza;
 solve;
 
 printf "%f\n",aBoltHossza;
-
-
