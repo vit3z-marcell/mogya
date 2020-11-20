@@ -7,9 +7,9 @@ set Rows := 1..nRows;
 set Cashiers := 1..cashierCount;
 # Hasznalt valtozok
 var aBoltHossza >= 0;
-var termekekEgySorban{Sorok, TermekekCsoportjai} binary;
-var kasszakSzamaEgySorban{Sorok, Kasszak} binary;
-var egySorHossza{Sorok} >= 0;
+var termekekEgySorban{Rows, ProductGroups} binary;
+var kasszakSzamaEgySorban{Rows, Cashiers} binary;
+var egySorHossza{Rows} >= 0;
 
 # Kikotesek
 s.t. egyTermekcsakEgySorban{p in ProductGroups}:
